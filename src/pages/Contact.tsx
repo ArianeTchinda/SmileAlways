@@ -1,0 +1,198 @@
+import Layout from "@/components/Layout";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+    MapPin,
+    Phone,
+    Mail,
+    Clock,
+    Calendar,
+    Send,
+    MessageCircle,
+} from "lucide-react";
+
+const scheduleSlots = [
+    "08:00", "09:00", "10:00", "11:00",
+    "14:00", "15:00", "16:00", "17:00", "18:00",
+];
+
+const ContactPage = () => {
+    return (
+        <Layout>
+            {/* Hero */}
+            <section className="bg-gradient-to-r from-dental-blue to-dental-blue-light text-white py-20 -mt-32 pt-48">
+                <div className="container mx-auto px-4 text-center">
+                    <span className="inline-block bg-white/20 text-white font-semibold text-sm px-4 py-1.5 rounded-full mb-4">
+                        Nous Contacter
+                    </span>
+                    <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact & Rendez-vous</h1>
+                    <p className="text-xl text-white/85 max-w-3xl mx-auto">
+                        Prenez rendez-vous facilement ou contactez-nous pour toute question.
+                        Notre équipe répond dans les plus brefs délais.
+                    </p>
+                </div>
+            </section>
+
+            {/* Main Content */}
+            <section className="py-20 bg-dental-cream">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        {/* Appointment Form */}
+                        <Card className="border-0 shadow-xl">
+                            <CardContent className="p-8">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-10 h-10 bg-gradient-to-r from-dental-blue to-dental-orange rounded-full flex items-center justify-center">
+                                        <Calendar className="w-5 h-5 text-white" />
+                                    </div>
+                                    <h2 className="text-2xl font-semibold text-dental-blue">
+                                        Prendre Rendez-vous
+                                    </h2>
+                                </div>
+
+                                <form className="space-y-5">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <Input placeholder="Prénom *" className="border-dental-blue/20" />
+                                        <Input placeholder="Nom *" className="border-dental-blue/20" />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <Input type="email" placeholder="Email *" className="border-dental-blue/20" />
+                                        <Input type="tel" placeholder="Téléphone *" className="border-dental-blue/20" />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <Input type="date" className="border-dental-blue/20" />
+                                        <select className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white">
+                                            <option value="">Heure souhaitée</option>
+                                            {scheduleSlots.map((s) => (
+                                                <option key={s} value={s}>{s}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <select className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white">
+                                        <option value="">Type de consultation *</option>
+                                        <option value="consultation">Consultation générale</option>
+                                        <option value="urgence">Urgence</option>
+                                        <option value="preventif">Soins préventifs</option>
+                                        <option value="esthetique">Esthétique dentaire</option>
+                                        <option value="orthodontie">Orthodontie</option>
+                                        <option value="chirurgie">Chirurgie</option>
+                                        <option value="implant">Implantologie</option>
+                                    </select>
+                                    <Textarea
+                                        placeholder="Description de votre demande ou symptômes (facultatif)"
+                                        className="border-dental-blue/20 min-h-[120px]"
+                                    />
+                                    <Button variant="dental" className="w-full py-6 text-base gap-2">
+                                        <Send className="w-5 h-5" />
+                                        Envoyer la demande
+                                    </Button>
+                                    <p className="text-xs text-muted-foreground text-center">
+                                        * Champs obligatoires. Nous confirmerons votre rendez-vous par SMS ou email.
+                                    </p>
+                                </form>
+                            </CardContent>
+                        </Card>
+
+                        {/* Info Column */}
+                        <div className="space-y-6">
+                            {/* Contact Cards */}
+                            {[
+                                {
+                                    icon: MapPin,
+                                    title: "Adresse",
+                                    lines: ["Carrefour Vogt", "Yaoundé Centre, Cameroun"],
+                                    action: "Voir sur Google Maps",
+                                    href: "https://maps.google.com",
+                                },
+                                {
+                                    icon: Phone,
+                                    title: "Téléphone",
+                                    lines: ["6 77 22 33 11 (standard)", "6 77 22 33 12 (urgences 24/7)"],
+                                    action: "Appeler maintenant",
+                                    href: "tel:+237677223311",
+                                },
+                                {
+                                    icon: Mail,
+                                    title: "Email",
+                                    lines: ["contactsmilealways@gmail.com", "urgencesmilealways@gmail.com"],
+                                    action: "Envoyer un email",
+                                    href: "mailto:contactsmilealways@gmail.com",
+                                },
+                                {
+                                    icon: Clock,
+                                    title: "Horaires d'ouverture",
+                                    lines: ["Lundi – Vendredi : 8h00 – 19h00", "Samedi : 9h00 – 17h00", "Dimanche : Urgences uniquement"],
+                                    action: null,
+                                    href: null,
+                                },
+                            ].map((info, i) => (
+                                <Card key={i} className="border-0 shadow-md hover:shadow-lg transition-shadow">
+                                    <CardContent className="p-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 bg-gradient-to-br from-dental-blue to-dental-orange rounded-xl flex items-center justify-center flex-shrink-0">
+                                                <info.icon className="w-6 h-6 text-white" />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-semibold text-dental-blue mb-2">{info.title}</h3>
+                                                {info.lines.map((l, j) => (
+                                                    <p key={j} className="text-sm text-muted-foreground">{l}</p>
+                                                ))}
+                                                {info.action && info.href && (
+                                                    <a
+                                                        href={info.href}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="text-sm text-dental-orange hover:text-dental-orange/80 mt-2 inline-block transition-colors"
+                                                    >
+                                                        {info.action} →
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+
+                            {/* Quick Buttons */}
+                            <div className="grid grid-cols-2 gap-4">
+                                <a href="tel:+237677223312">
+                                    <Button variant="accent" size="lg" className="w-full h-16 flex-col gap-1">
+                                        <Phone className="w-5 h-5" />
+                                        <span className="text-xs">Urgences</span>
+                                    </Button>
+                                </a>
+                                <a href="https://wa.me/237677223311" target="_blank" rel="noreferrer">
+                                    <Button variant="dental-outline" size="lg" className="w-full h-16 flex-col gap-1">
+                                        <MessageCircle className="w-5 h-5" />
+                                        <span className="text-xs">WhatsApp</span>
+                                    </Button>
+                                </a>
+                            </div>
+
+                            {/* Map Embed Placeholder */}
+                            <Card className="border-0 shadow-md overflow-hidden">
+                                <div className="h-48 bg-gradient-to-br from-dental-blue/10 to-dental-orange/10 flex items-center justify-center">
+                                    <div className="text-center">
+                                        <MapPin className="w-10 h-10 text-dental-blue mx-auto mb-3" />
+                                        <p className="font-semibold text-dental-blue">Carrefour Vogt, Yaoundé</p>
+                                        <a
+                                            href="https://maps.google.com"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="text-sm text-dental-orange mt-2 inline-block"
+                                        >
+                                            Ouvrir dans Google Maps →
+                                        </a>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </Layout>
+    );
+};
+
+export default ContactPage;

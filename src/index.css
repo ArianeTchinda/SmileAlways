@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* =========================================================
+   DESIGN SYSTEM — Smile Always Cabinet Dentaire
+   ========================================================= */
 
 @layer base {
   :root {
@@ -37,66 +39,51 @@ All colors MUST be HSL.
     --ring: 220 90% 56%;
 
     /* Custom dental theme colors */
-    --dental-blue: 220 90% 56%;
-    --dental-blue-light: 220 70% 70%;
-    --dental-blue-dark: 220 90% 45%;
-    --dental-orange: 25 95% 58%;
-    --dental-orange-light: 25 85% 70%;
+    --dental-blue: 220 90% 46%;
+    --dental-blue-light: 220 70% 65%;
+    --dental-blue-dark: 220 90% 35%;
+    --dental-orange: 25 95% 55%;
+    --dental-orange-light: 25 85% 68%;
     --dental-cream: 45 30% 96%;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 90% 56%), hsl(220 70% 70%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 58%), hsl(25 85% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 90% 56% / 0.95), hsl(25 95% 58% / 0.85));
-    
-    /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(220 90% 56% / 0.15);
-    --shadow-accent: 0 4px 20px hsl(25 95% 58% / 0.15);
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 90% 46%), hsl(220 70% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%), hsl(25 85% 68%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 90% 46% / 0.95), hsl(25 95% 55% / 0.85));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(220 90% 46% / 0.15);
+    --shadow-accent: 0 4px 20px hsl(25 95% 55% / 0.15);
+
+    --radius: 0.625rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -116,7 +103,108 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* =========================================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ========================================================= */
+@layer utilities {
+  /* Base state — hidden before animation */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger helpers */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
+  .delay-600 { transition-delay: 600ms; }
+
+  /* Fade from left */
+  .animate-slide-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .animate-slide-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Fade from right */
+  .animate-slide-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .animate-slide-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Scale in */
+  .animate-scale-in {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .animate-scale-in.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   NAVBAR UNDERLINE — scaleX approach (stable, no jump)
+   ========================================================= */
+.nav-link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, hsl(var(--dental-blue)), hsl(var(--dental-orange)));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  transform: scaleX(1);
 }
