@@ -19,7 +19,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 20%;
 
-    --primary: 220 90% 56%;
+    --primary: 207 80% 42%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 15% 93%;
@@ -36,23 +36,23 @@
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
-    --ring: 220 90% 56%;
+    --ring: 207 80% 42%;
 
     /* Custom dental theme colors */
-    --dental-blue: 220 90% 46%;
-    --dental-blue-light: 220 70% 65%;
-    --dental-blue-dark: 220 90% 35%;
+    --dental-blue: 207 80% 42%;
+    --dental-blue-light: 207 85% 61%;
+    --dental-blue-dark: 213 85% 28%;
     --dental-orange: 25 95% 55%;
     --dental-orange-light: 25 85% 68%;
     --dental-cream: 45 30% 96%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 90% 46%), hsl(220 70% 65%));
+    --gradient-primary: linear-gradient(135deg, hsl(207 80% 42%), hsl(207 85% 61%));
     --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%), hsl(25 85% 68%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 90% 46% / 0.95), hsl(25 95% 55% / 0.85));
+    --gradient-hero: linear-gradient(135deg, hsl(207 80% 42% / 0.95), hsl(25 95% 55% / 0.85));
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(220 90% 46% / 0.15);
+    --shadow-soft: 0 4px 20px hsl(207 80% 42% / 0.15);
     --shadow-accent: 0 4px 20px hsl(25 95% 55% / 0.15);
 
     --radius: 0.625rem;
@@ -207,4 +207,73 @@
 .nav-link-underline:hover::after,
 .nav-link-underline.active::after {
   transform: scaleX(1);
+}
+
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: hsl(var(--dental-blue) / 0.25);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.carousel-dot.active {
+  background: hsl(var(--dental-blue));
+  transform: scale(1.3);
+}
+
+/* =========================================================
+   WAVE SECTION DIVIDER
+   ========================================================= */
+.wave-divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-divider svg {
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+/* =========================================================
+   PARALLAX FLOAT
+   ========================================================= */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(2deg); }
+  66% { transform: translateY(6px) rotate(-1deg); }
+}
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* =========================================================
+   GRADIENT TEXT
+   ========================================================= */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--dental-blue)), hsl(var(--dental-orange)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

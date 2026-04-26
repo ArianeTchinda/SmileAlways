@@ -12,6 +12,7 @@ import {
     Send,
     MessageCircle,
 } from "lucide-react";
+import heroImage from "@/assets/hero-dental.jpg";
 
 const scheduleSlots = [
     "08:00", "09:00", "10:00", "11:00",
@@ -22,16 +23,31 @@ const ContactPage = () => {
     return (
         <Layout>
             {/* Hero */}
-            <section className="bg-gradient-to-r from-dental-blue to-dental-blue-light text-white py-20 -mt-32 pt-48">
-                <div className="container mx-auto px-4 text-center">
-                    <span className="inline-block bg-white/20 text-white font-semibold text-sm px-4 py-1.5 rounded-full mb-4">
+            <section className="group relative bg-gradient-to-br from-dental-blue-dark via-dental-blue to-dental-blue-light text-white -mt-32 pt-48 pb-20 overflow-hidden">
+                <div className="absolute inset-0">
+                    <img src={heroImage} alt="" aria-hidden className="w-full h-full object-cover scale-105 animate-[slow-zoom_20s_ease-in-out_infinite_alternate] transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-dental-blue-dark/90 via-dental-blue/80 to-dental-blue-light/70 transition-all duration-500 group-hover:from-dental-blue-dark/85 group-hover:via-dental-blue/75 group-hover:to-dental-blue-light/65" />
+                </div>
+                <div aria-hidden className="pointer-events-none absolute inset-0">
+                    <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 -left-20 w-72 h-72 bg-dental-orange/10 rounded-full blur-3xl" />
+                    <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-white/20 rounded-full animate-gentle-float" />
+                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+                </div>
+                <div className="container mx-auto px-4 text-center relative">
+                    <span className="inline-block bg-white/15 text-white font-semibold text-sm px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm border border-white/10">
                         Nous Contacter
                     </span>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact & Rendez-vous</h1>
-                    <p className="text-xl text-white/85 max-w-3xl mx-auto">
+                    <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Contact & Rendez-vous</h1>
+                    <p className="text-xl text-white/85 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.15s" }}>
                         Prenez rendez-vous facilement ou contactez-nous pour toute question.
                         Notre équipe répond dans les plus brefs délais.
                     </p>
+                </div>
+                <div className="wave-divider">
+                    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z" fill="hsl(45 30% 96%)" />
+                    </svg>
                 </div>
             </section>
 

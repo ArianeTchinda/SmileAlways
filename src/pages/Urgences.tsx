@@ -15,6 +15,7 @@ import {
 import { useState, useRef } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-dental.jpg";
 
 const faqs = [
     {
@@ -52,9 +53,28 @@ const UrgencesPage = () => {
     return (
         <Layout>
             <div ref={pageRef}>
-                {/* Hero — dental-blue palette instead of red */}
-                <section className="bg-gradient-to-br from-dental-blue-dark via-dental-blue to-dental-blue-light text-white py-20 -mt-32 pt-48">
-                    <div className="container mx-auto px-4 text-center">
+                {/* Hero — with background image like homepage */}
+                <section className="relative bg-gradient-to-br from-dental-blue-dark via-dental-blue to-dental-blue-light text-white -mt-32 pt-48 pb-20 overflow-hidden">
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                        <img
+                            src={heroImage}
+                            alt="Urgences dentaires"
+                            className="w-full h-full object-cover scale-105 animate-[slow-zoom_20s_ease-in-out_infinite_alternate]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-dental-blue-dark/90 via-dental-blue/85 to-dental-blue-light/75" />
+                    </div>
+
+                    {/* Decorative elements */}
+                    <div aria-hidden className="pointer-events-none absolute inset-0">
+                        <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+                        <div className="absolute bottom-0 -left-20 w-72 h-72 bg-dental-orange/10 rounded-full blur-3xl" />
+                        <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-white/20 rounded-full animate-gentle-float" />
+                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+                    </div>
+
+                    {/* Content — container wrapper */}
+                    <div className="container mx-auto px-4 text-center relative">
                         <div className="flex justify-center mb-6 animate-on-scroll">
                             <div className="w-24 h-24 bg-white/15 rounded-2xl flex items-center justify-center animate-pulse-soft backdrop-blur-sm border border-white/20">
                                 <ShieldAlert className="w-12 h-12 text-dental-orange" />
@@ -96,12 +116,19 @@ const UrgencesPage = () => {
                                 { val: "< 1h", label: "Délai de prise en charge" },
                                 { val: "100%", label: "Urgences traitées" },
                             ].map((s, i) => (
-                                <div key={i} className="bg-white/10 rounded-2xl py-3 px-2 backdrop-blur-sm">
+                                <div key={i} className="bg-white/10 rounded-2xl py-3 px-2 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 hover:-translate-y-1">
                                     <p className="text-2xl font-bold text-dental-orange">{s.val}</p>
                                     <p className="text-xs text-white/75 leading-tight">{s.label}</p>
                                 </div>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Wave divider */}
+                    <div className="wave-divider">
+                        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z" fill="hsl(45 30% 96%)" />
+                        </svg>
                     </div>
                 </section>
 
@@ -162,10 +189,10 @@ const UrgencesPage = () => {
                             ].map((item, i) => (
                                 <Card
                                     key={i}
-                                    className={`border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-on-scroll delay-${(i % 3) * 100 + 100}`}
+                                    className={`group border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-on-scroll delay-${(i % 3) * 100 + 100}`}
                                 >
                                     <CardContent className="p-6">
-                                        <div className={`w-12 h-12 bg-${item.accent}/10 rounded-xl flex items-center justify-center mb-4`}>
+                                        <div className={`w-12 h-12 bg-${item.accent}/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                                             <item.icon className={`w-6 h-6 text-${item.accent}`} />
                                         </div>
                                         <h3 className="font-bold text-dental-blue mb-2">{item.title}</h3>
@@ -193,7 +220,7 @@ const UrgencesPage = () => {
                             ].map((item, i) => (
                                 <div key={i} className={`text-center animate-on-scroll delay-${i * 100 + 100}`}>
                                     <div className="relative inline-block mb-4">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-dental-blue to-dental-blue-light rounded-2xl flex items-center justify-center text-white shadow-md">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-dental-blue to-dental-blue-light rounded-2xl flex items-center justify-center text-white shadow-md hover:shadow-xl transition-all duration-300 hover:scale-110">
                                             <item.icon className="w-8 h-8" />
                                         </div>
                                         <span className="absolute -top-2 -right-2 w-7 h-7 bg-dental-orange text-white text-xs font-bold rounded-full flex items-center justify-center shadow">
@@ -219,7 +246,7 @@ const UrgencesPage = () => {
                         </div>
                         <div className="space-y-4">
                             {faqs.map((faq, i) => (
-                                <Card key={i} className={`border-0 shadow-sm animate-on-scroll delay-${i * 100}`}>
+                                <Card key={i} className={`border-0 shadow-sm hover:shadow-md transition-shadow animate-on-scroll delay-${i * 100}`}>
                                     <CardContent className="p-0">
                                         <button
                                             className="w-full flex items-center justify-between p-6 text-left"
@@ -245,7 +272,7 @@ const UrgencesPage = () => {
                     </div>
                 </section>
 
-                {/* Final CTA — dental-blue not red */}
+                {/* Final CTA */}
                 <section className="py-20 bg-gradient-to-br from-dental-blue to-dental-blue-dark text-white text-center">
                     <div className="container mx-auto px-4 animate-on-scroll">
                         <div className="w-16 h-16 bg-dental-orange rounded-2xl flex items-center justify-center mx-auto mb-6 animate-float">

@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout";
+import PageHero from "@/components/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { GraduationCap, Award, Mail, Phone, Calendar } from "lucide-react";
+import { GraduationCap, Award, Mail, Calendar } from "lucide-react";
 
 import medecin1 from "../assets/medecin2.jpg";
 import medecin2 from "../assets/medecin3.jpg";
@@ -57,21 +58,11 @@ const teamMembers = [
 const EquipePage = () => {
     return (
         <Layout>
-            {/* Hero */}
-            <section className="bg-gradient-to-r from-dental-blue to-dental-blue-light text-white py-20 -mt-32 pt-48">
-                <div className="container mx-auto px-4 text-center">
-                    <span className="inline-block bg-white/20 text-white font-semibold text-sm px-4 py-1.5 rounded-full mb-4">
-                        Notre Équipe
-                    </span>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        Des Experts à Votre Service
-                    </h1>
-                    <p className="text-xl text-white/85 max-w-3xl mx-auto">
-                        Rencontrez notre équipe de professionnels passionnés, dédiés à votre
-                        santé bucco-dentaire et à votre bien-être.
-                    </p>
-                </div>
-            </section>
+            <PageHero
+                label="Notre Équipe"
+                title="Des Experts à Votre Service"
+                subtitle="Rencontrez notre équipe de professionnels passionnés, dédiés à votre santé bucco-dentaire et à votre bien-être."
+            />
 
             {/* Team Cards */}
             <section className="py-20 bg-background">
@@ -168,7 +159,7 @@ const EquipePage = () => {
             </section>
 
             {/* Stats */}
-            <section className="py-16 bg-dental-cream">
+            <section className="py-16 bg-gradient-to-r from-dental-blue to-dental-blue-light text-white">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
@@ -178,10 +169,10 @@ const EquipePage = () => {
                             { value: "25+", label: "Formations continues" },
                         ].map((stat, i) => (
                             <div key={i}>
-                                <div className="text-4xl font-bold text-dental-blue mb-2">
+                                <div className="text-4xl font-bold mb-2">
                                     {stat.value}
                                 </div>
-                                <div className="text-muted-foreground">{stat.label}</div>
+                                <div className="text-white/80">{stat.label}</div>
                             </div>
                         ))}
                     </div>
@@ -189,17 +180,17 @@ const EquipePage = () => {
             </section>
 
             {/* Join CTA */}
-            <section className="py-16 bg-dental-blue text-white text-center">
+            <section className="py-16 bg-dental-cream border-t border-border text-center">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-4">
+                    <h2 className="text-3xl font-bold text-dental-blue mb-4">
                         Vous souhaitez rejoindre notre équipe ?
                     </h2>
-                    <p className="text-white/80 mb-8 max-w-xl mx-auto">
+                    <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                         Nous sommes toujours à la recherche de praticiens talentueux et passionnés
                         pour agrandir notre cabinet.
                     </p>
                     <a href="mailto:contactsmilealways@gmail.com">
-                        <Button variant="accent" size="lg" className="gap-2">
+                        <Button variant="dental" size="lg" className="gap-2">
                             <Mail className="w-5 h-5" />
                             Envoyer votre candidature
                         </Button>
