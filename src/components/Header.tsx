@@ -148,7 +148,7 @@ const Header = () => {
           <div className="flex items-center justify-between text-sm">
             <div className="hidden md:flex items-center space-x-6">
               <a
-                href="tel:+237677223311"
+                href="tel:+237676615413"
                 className="flex items-center gap-2 hover:text-white/80 transition-colors"
               >
                 <Phone className="w-4 h-4" />
@@ -308,7 +308,7 @@ const Header = () => {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center space-x-3">
-              <a href="tel:+237677223311">
+              <a href="tel:+237676615413">
                 <Button
                   variant="dental-outline"
                   size="sm"
@@ -425,7 +425,7 @@ const Header = () => {
               </div>
 
               <div className="flex flex-col space-y-2 px-4 pt-4 pb-2 border-t border-border mt-4">
-                <a href="tel:+237677223311">
+                <a href="tel:+237676615413">
                   <Button
                     variant="dental-outline"
                     size="sm"

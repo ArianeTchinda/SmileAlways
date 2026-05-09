@@ -305,7 +305,7 @@ const ServiceDetailPage = () => {
                                                     Prendre rendez-vous
                                                 </Button>
                                             </Link>
-                                            <a href="tel:+237677223311">
+                                            <a href="tel:+237676615413">
                                                 <Button variant="dental-outline" className="w-full gap-2 mt-2">
                                                     <Phone className="w-4 h-4" />
                                                     6 77 22 33 11

@@ -221,9 +221,9 @@ const ContactPage = () => {
                                 {
                                     icon: Phone,
                                     title: "Téléphone",
-                                    lines: ["6 77 22 33 11 (standard)", "6 77 22 33 12 (urgences 24/7)"],
+                                    lines: ["676 61 54 13 (standard)", "6 77 22 33 12 (urgences 24/7)"],
                                     action: "Appeler maintenant",
-                                    href: "tel:+237677223311",
+                                    href: "+237676615413",
                                 },
                                 {
                                     icon: Mail,
@@ -269,13 +269,13 @@ const ContactPage = () => {
 
                             {/* Quick Buttons */}
                             <div className="grid grid-cols-2 gap-4">
-                                <a href="tel:+237677223312">
+                                <a href="tel:+237676615413">
                                     <Button variant="accent" size="lg" className="w-full h-16 flex-col gap-1">
                                         <Phone className="w-5 h-5" />
                                         <span className="text-xs">Urgences</span>
                                     </Button>
                                 </a>
-                                <a href="https://wa.me/237677223311" target="_blank" rel="noreferrer">
+                                <a href="https://wa.me/237676615413" target="_blank" rel="noreferrer">
                                     <Button variant="dental-outline" size="lg" className="w-full h-16 flex-col gap-1">
                                         <MessageCircle className="w-5 h-5" />
                                         <span className="text-xs">WhatsApp</span>

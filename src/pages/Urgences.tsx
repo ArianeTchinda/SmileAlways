@@ -88,7 +88,7 @@ const UrgencesPage = () => {
                             vos urgences dentaires. Ne souffrez plus — appelez-nous maintenant.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-on-scroll delay-300">
-                            <a href="tel:+237677223312">
+                            <a href="tel:+237676615413">
                                 <Button
                                     size="lg"
                                     variant="accent"
@@ -98,7 +98,7 @@ const UrgencesPage = () => {
                                     6 77 22 33 12 — Urgences
                                 </Button>
                             </a>
-                            <a href="https://wa.me/237677223312" target="_blank" rel="noreferrer">
+                            <a href="https://wa.me/237223312" target="_blank" rel="noreferrer">
                                 <Button
                                     variant="dental-outline"
                                     size="lg"
@@ -281,7 +281,7 @@ const UrgencesPage = () => {
                         <h2 className="text-4xl font-bold mb-4">Une urgence en ce moment ?</h2>
                         <p className="text-white/85 mb-8 text-xl">N'attendez pas. Chaque minute compte.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="tel:+237677223312">
+                            <a href="tel:+237676615413">
                                 <Button variant="accent" size="lg" className="font-bold text-xl px-10 gap-2 py-6 shadow-xl">
                                     <Phone className="w-6 h-6" />
                                     6 77 22 33 12
