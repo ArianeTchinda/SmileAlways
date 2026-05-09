@@ -15,6 +15,7 @@ import MentionsLegalesPage from "./pages/MentionsLegales";
 import ConfidentialitePage from "./pages/Confidentialite";
 import CGVPage from "./pages/CGV";
 import ServiceDetailPage from "./pages/ServiceDetail";
+import AdminPage from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
           <Route path="/confidentialite" element={<ConfidentialitePage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/cgv" element={<CGVPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

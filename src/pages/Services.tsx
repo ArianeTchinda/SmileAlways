@@ -1,23 +1,32 @@
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
+import BeforeAfterSection from "@/components/BeforeAfterSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
     Smile, Shield, Heart, Scissors, Crown, Zap,
     ArrowRight, CheckCircle, Calendar, Clock, Award,
 } from "lucide-react";
 
+// Importation des images (assurez-vous que les fichiers existent dans votre dossier assets)
+import imgPreventif from "@/assets/image1.jpeg";
+import imgProthese from "@/assets/image2.jpeg";
+import imgChirurgie from "@/assets/image4.jpeg";
+import imgEsthetique from "@/assets/image5.jpeg";
+import imgOrthodontie from "@/assets/image3.webp";
+import imgUrgence from "@/assets/image6.jpeg";
+
 const servicesData = [
     {
         id: "preventifs",
         slug: "preventifs",
         icon: Smile,
+        image: imgPreventif,
         title: "Soins Préventifs",
-        description:
-            "La prévention est le meilleur investissement pour votre santé dentaire. Nos soins préventifs permettent de détecter et traiter les problèmes à un stade précoce.",
+        description: "La prévention est le meilleur investissement pour votre santé dentaire. Nos soins préventifs permettent de détecter et traiter les problèmes à un stade précoce.",
         features: [
             "Examen bucco-dentaire complet",
             "Détartrage et polissage professionnel",
@@ -28,15 +37,15 @@ const servicesData = [
         ],
         price: "À partir de 15 000 FCFA",
         duration: "45 – 60 min",
-        color: "from-dental-blue to-dental-blue-light",
+        color: "from-dental-blue/90 to-dental-blue-light/90",
     },
     {
         id: "protheses",
         slug: "protheses",
         icon: Crown,
+        image: imgProthese,
         title: "Prothèses Dentaires",
-        description:
-            "Couronnes, bridges et implants de haute qualité pour restaurer fonctionnelle et esthétique votre bouche, avec des matériaux durables et naturels.",
+        description: "Couronnes, bridges et implants de haute qualité pour restaurer fonctionnelle et esthétique votre bouche, avec des matériaux durables et naturels.",
         features: [
             "Implants dentaires en titane",
             "Couronnes céramo-métalliques ou tout céramique",
@@ -47,15 +56,15 @@ const servicesData = [
         ],
         price: "À partir de 150 000 FCFA",
         duration: "Plusieurs séances",
-        color: "from-violet-600 to-purple-500",
+        color: "from-violet-600/90 to-purple-500/90",
     },
     {
         id: "chirurgie",
         slug: "chirurgie",
         icon: Scissors,
+        image: imgChirurgie,
         title: "Chirurgie Dentaire",
-        description:
-            "Interventions chirurgicales réalisées dans un environnement sécurisé et stérilisé, avec les anesthésies locales les plus efficaces pour un confort optimal.",
+        description: "Interventions chirurgicales réalisées dans un environnement sécurisé et stérilisé, avec les anesthésies locales les plus efficaces pour un confort optimal.",
         features: [
             "Extractions simples et complexes",
             "Chirurgie des dents de sagesse",
@@ -66,15 +75,15 @@ const servicesData = [
         ],
         price: "À partir de 25 000 FCFA",
         duration: "30 – 90 min",
-        color: "from-slate-600 to-slate-700",
+        color: "from-slate-700/90 to-slate-800/90",
     },
     {
         id: "esthetique",
         slug: "esthetique",
         icon: Zap,
+        image: imgEsthetique,
         title: "Esthétique Dentaire",
-        description:
-            "Retrouvez un sourire éclatant et naturel grâce à nos traitements esthétiques personnalisés, réalisés par des praticiens spécialisés.",
+        description: "Retrouvez un sourire éclatant et naturel grâce à nos traitements esthétiques personnalisés, réalisés par des praticiens spécialisés.",
         features: [
             "Blanchiment professionnel en cabinet",
             "Blanchiment à domicile (gouttières)",
@@ -85,15 +94,15 @@ const servicesData = [
         ],
         price: "À partir de 50 000 FCFA",
         duration: "1 – 2 séances",
-        color: "from-dental-orange to-dental-orange-light",
+        color: "from-dental-orange/90 to-dental-orange-light/90",
     },
     {
         id: "orthodontie",
         slug: "orthodontie",
         icon: Shield,
+        image: imgOrthodontie,
         title: "Orthodontie",
-        description:
-            "Appareils traditionnels ou aligneurs invisibles pour corriger les malpositions dentaires et obtenir un sourire parfaitement aligné.",
+        description: "Appareils traditionnels ou aligneurs invisibles pour corriger les malpositions dentaires et obtenir un sourire parfaitement aligné.",
         features: [
             "Bagues traditionnelles métalliques",
             "Bagues esthétiques (céramique)",
@@ -104,15 +113,15 @@ const servicesData = [
         ],
         price: "À partir de 300 000 FCFA",
         duration: "12 – 24 mois",
-        color: "from-emerald-600 to-teal-500",
+        color: "from-emerald-600/90 to-teal-500/90",
     },
     {
         id: "urgences",
         slug: "urgences-dentaires",
         icon: Heart,
+        image: imgUrgence,
         title: "Soins d'Urgence",
-        description:
-            "Prise en charge rapide des douleurs aiguës, fractures, abcès et traumatismes dentaires, 7 jours sur 7, 24 heures sur 24.",
+        description: "Prise en charge rapide des douleurs aiguës, fractures, abcès et traumatismes dentaires, 7 jours sur 7, 24 heures sur 24.",
         features: [
             "Consultation d'urgence prioritaire",
             "Soulagement immédiat de la douleur",
@@ -123,7 +132,7 @@ const servicesData = [
         ],
         price: "À partir de 20 000 FCFA",
         duration: "Prise en charge immédiate",
-        color: "from-dental-blue-dark to-dental-blue",
+        color: "from-red-700/90 to-red-600/90",
     },
 ];
 
@@ -140,56 +149,75 @@ const ServicesPage = () => {
             />
 
             <div ref={pageRef}>
-                {/* Services List */}
                 <section className="py-20 bg-dental-cream">
                     <div className="container mx-auto px-4">
-                        <div className="space-y-12">
+                        <div className="space-y-16">
                             {servicesData.map((service, index) => (
                                 <Card
                                     key={service.id}
                                     id={service.id}
-                                    className={`border-0 shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 animate-on-scroll delay-${(index % 3) * 100}`}
+                                    className={`border-0 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 animate-on-scroll group`}
                                 >
                                     <CardContent className="p-0">
                                         <div className={`flex flex-col md:flex-row ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
-                                            {/* Color Banner */}
-                                            <div className={`bg-gradient-to-br ${service.color} p-10 md:w-1/3 flex flex-col items-center justify-center text-white text-center`}>
-                                                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                                    <service.icon className="w-10 h-10 text-white" />
+                                            
+                                            {/* Image & Banner Section */}
+                                            <div className="relative md:w-2/5 min-h-[300px] overflow-hidden">
+                                                {/* Background Image */}
+                                                <img 
+                                                    src={service.image} 
+                                                    alt={service.title}
+                                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                />
+                                                {/* Color Overlay */}
+                                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} mix-blend-multiply opacity-90 group-hover:opacity-75 transition-opacity duration-500`} />
+                                                
+                                                {/* Overlay Content */}
+                                                <div className="relative h-full p-10 flex flex-col items-center justify-center text-white text-center z-10">
+                                                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 border border-white/30 shadow-xl">
+                                                        <service.icon className="w-8 h-8 text-white" />
+                                                    </div>
+                                                    <h2 className="text-3xl font-bold mb-4 tracking-tight">{service.title}</h2>
+                                                    
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center justify-center gap-2 text-white/90 text-sm bg-black/20 backdrop-blur-sm px-4 py-1.5 rounded-full">
+                                                            <Clock className="w-4 h-4" /> {service.duration}
+                                                        </div>
+                                                        <div className="flex items-center justify-center gap-2 text-white font-bold bg-dental-orange px-4 py-1.5 rounded-full shadow-lg">
+                                                            <Award className="w-4 h-4" /> {service.price}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <h2 className="text-2xl font-bold mb-2">{service.title}</h2>
-                                                <div className="flex items-center gap-2 text-white/80 text-sm mb-4">
-                                                    <Clock className="w-4 h-4" /> {service.duration}
-                                                </div>
-                                                <span className="bg-white/20 px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2">
-                                                    <Award className="w-4 h-4" /> {service.price}
-                                                </span>
                                             </div>
 
-                                            {/* Content */}
-                                            <div className="p-10 md:w-2/3">
-                                                <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-                                                    {service.description}
+                                            {/* Content Section */}
+                                            <div className="p-8 md:p-12 md:w-3/5 bg-white flex flex-col justify-center">
+                                                <p className="text-slate-600 mb-8 text-lg leading-relaxed italic">
+                                                    "{service.description}"
                                                 </p>
-                                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                                                
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-10">
                                                     {service.features.map((f, i) => (
-                                                        <li key={i} className="flex items-center gap-2 text-sm">
-                                                            <CheckCircle className="w-4 h-4 text-dental-orange flex-shrink-0" />
-                                                            <span>{f}</span>
-                                                        </li>
+                                                        <div key={i} className="flex items-start gap-3 group/item">
+                                                            <div className="mt-1 p-1 bg-dental-blue/10 rounded-full group-hover/item:bg-dental-orange/20 transition-colors">
+                                                                <CheckCircle className="w-4 h-4 text-dental-blue group-hover/item:text-dental-orange" />
+                                                            </div>
+                                                            <span className="text-slate-700 text-sm font-medium">{f}</span>
+                                                        </div>
                                                     ))}
-                                                </ul>
-                                                <div className="flex flex-wrap gap-3">
-                                                    <Link to={`/services/${service.slug}`}>
-                                                        <Button variant="dental" className="gap-2">
-                                                            En savoir plus
+                                                </div>
+
+                                                <div className="flex flex-wrap gap-4 pt-6 border-t border-slate-100">
+                                                    <Link to={`/services/${service.slug}`} className="flex-1 sm:flex-none">
+                                                        <Button variant="dental" className="w-full gap-2 shadow-lg hover:shadow-dental-blue/30 transition-all">
+                                                            Détails du service
                                                             <ArrowRight className="w-4 h-4" />
                                                         </Button>
                                                     </Link>
-                                                    <Link to="/contact">
-                                                        <Button variant="dental-outline" className="gap-2">
-                                                            <Calendar className="w-4 h-4" />
-                                                            Prendre rendez-vous
+                                                    <Link to="/contact" className="flex-1 sm:flex-none">
+                                                        <Button variant="outline" className="w-full gap-2 border-slate-200 hover:bg-slate-50">
+                                                            <Calendar className="w-4 h-4 text-dental-blue" />
+                                                            Rendez-vous
                                                         </Button>
                                                     </Link>
                                                 </div>
@@ -202,27 +230,23 @@ const ServicesPage = () => {
                     </div>
                 </section>
 
-                {/* CTA Banner */}
-                <section className="py-16 bg-gradient-to-r from-dental-blue to-dental-blue-light text-white text-center">
-                    <div className="container mx-auto px-4 animate-on-scroll">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Besoin d'un conseil ou d'un devis ?
+                <BeforeAfterSection />
+
+                {/* CTA Final */}
+                <section className="py-20 bg-slate-900 text-white overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-1/3 h-full bg-dental-blue/10 skew-x-12 translate-x-20" />
+                    <div className="container mx-auto px-4 relative z-10 text-center">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                            Prêt à retrouver votre plus beau sourire ?
                         </h2>
-                        <p className="text-white/80 mb-8 text-lg max-w-2xl mx-auto">
-                            Notre équipe répond à toutes vos questions et vous propose un devis
-                            personnalisé sans engagement.
+                        <p className="text-slate-400 mb-10 text-xl max-w-2xl mx-auto">
+                            Notre équipe vous accueille dans un cadre moderne pour des soins personnalisés et sans douleur.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-5 justify-center">
                             <Link to="/contact">
-                                <Button variant="accent" size="lg" className="gap-2 shadow-xl">
-                                    <Calendar className="w-5 h-5" />
-                                    Prendre rendez-vous
-                                </Button>
-                            </Link>
-                            <Link to="/urgences">
-                                <Button variant="dental-outline" size="lg" className="border-white text-white hover:bg-white/20 gap-2">
-                                    Urgences 24/7
-                                    <ArrowRight className="w-4 h-4" />
+                                <Button variant="accent" size="lg" className="h-14 px-8 text-lg gap-3 shadow-2xl">
+                                    <Calendar className="w-6 h-6" />
+                                    Réserver ma consultation
                                 </Button>
                             </Link>
                         </div>

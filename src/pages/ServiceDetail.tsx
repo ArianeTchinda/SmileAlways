@@ -316,7 +316,7 @@ const ServiceDetailPage = () => {
                                 </Card>
 
                                 {/* Other Services */}
-                                <Card className="border-0 shadow-md animate-on-scroll">
+                                <Card className="border-0 shadow-md animate-on-scroll sticky top-96">
                                     <CardContent className="p-6">
                                         <h4 className="font-bold text-dental-blue mb-4">Nos autres services</h4>
                                         <div className="space-y-2">

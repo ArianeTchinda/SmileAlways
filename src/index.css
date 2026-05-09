@@ -187,26 +187,33 @@
    ========================================================= */
 .nav-link-underline {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .nav-link-underline::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 70%;
   height: 2px;
-  background: linear-gradient(to right, hsl(var(--dental-blue)), hsl(var(--dental-orange)));
-  transform: scaleX(0);
-  transform-origin: left center;
+  background: linear-gradient(
+    to right,
+    hsl(var(--dental-blue)),
+    hsl(var(--dental-orange))
+  );
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 2px;
+  border-radius: 999px;
 }
 
 .nav-link-underline:hover::after,
 .nav-link-underline.active::after {
-  transform: scaleX(1);
+  transform: translateX(-50%) scaleX(1);
 }
 
 /* =========================================================

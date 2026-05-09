@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react";
 import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,60 @@ const scheduleSlots = [
     "14:00", "15:00", "16:00", "17:00", "18:00",
 ];
 
+const apiBase = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:4000";
+
 const ContactPage = () => {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        date: "",
+        hour: "",
+        appointmentType: "",
+        message: "",
+    });
+    const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+    const [isSending, setIsSending] = useState(false);
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setStatus(null);
+
+        if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.appointmentType) {
+            setStatus({ type: "error", message: "Merci de remplir tous les champs obligatoires." });
+            return;
+        }
+
+        setIsSending(true);
+
+        try {
+            const response = await fetch(`${apiBase}/api/contacts`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
+                    email: formData.email,
+                    phone: formData.phone,
+                    subject: `Rendez-vous ${formData.date || "sans date"} ${formData.hour || ""} - ${formData.appointmentType}`,
+                    message: formData.message,
+                }),
+            });
+
+            if (!response.ok) {
+                const body = await response.json();
+                throw new Error(body.error ?? "Impossible d'envoyer la demande.");
+            }
+
+            setStatus({ type: "success", message: "Votre demande a bien été envoyée. Nous vous contacterons bientôt." });
+            setFormData({ firstName: "", lastName: "", email: "", phone: "", date: "", hour: "", appointmentType: "", message: "" });
+        } catch (error) {
+            setStatus({ type: "error", message: error instanceof Error ? error.message : "Une erreur est survenue." });
+        } finally {
+            setIsSending(false);
+        }
+    };
+
     return (
         <Layout>
             {/* Hero */}
@@ -67,25 +121,66 @@ const ContactPage = () => {
                                     </h2>
                                 </div>
 
-                                <form className="space-y-5">
+                                <form className="space-y-5" onSubmit={handleSubmit}>
+                                    {status ? (
+                                        <div className={`rounded-3xl p-4 mb-4 text-sm ${status.type === "success" ? "bg-emerald-50 text-emerald-800 border border-emerald-200" : "bg-rose-50 text-rose-800 border border-rose-200"}`}>
+                                            {status.message}
+                                        </div>
+                                    ) : null}
+
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <Input placeholder="Prénom *" className="border-dental-blue/20" />
-                                        <Input placeholder="Nom *" className="border-dental-blue/20" />
+                                        <Input
+                                            placeholder="Prénom *"
+                                            className="border-dental-blue/20"
+                                            value={formData.firstName}
+                                            onChange={(event) => setFormData({ ...formData, firstName: event.target.value })}
+                                        />
+                                        <Input
+                                            placeholder="Nom *"
+                                            className="border-dental-blue/20"
+                                            value={formData.lastName}
+                                            onChange={(event) => setFormData({ ...formData, lastName: event.target.value })}
+                                        />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <Input type="email" placeholder="Email *" className="border-dental-blue/20" />
-                                        <Input type="tel" placeholder="Téléphone *" className="border-dental-blue/20" />
+                                        <Input
+                                            type="email"
+                                            placeholder="Email *"
+                                            className="border-dental-blue/20"
+                                            value={formData.email}
+                                            onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+                                        />
+                                        <Input
+                                            type="tel"
+                                            placeholder="Téléphone *"
+                                            className="border-dental-blue/20"
+                                            value={formData.phone}
+                                            onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
+                                        />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <Input type="date" className="border-dental-blue/20" />
-                                        <select className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white">
+                                        <Input
+                                            type="date"
+                                            className="border-dental-blue/20"
+                                            value={formData.date}
+                                            onChange={(event) => setFormData({ ...formData, date: event.target.value })}
+                                        />
+                                        <select
+                                            value={formData.hour}
+                                            onChange={(event) => setFormData({ ...formData, hour: event.target.value })}
+                                            className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white"
+                                        >
                                             <option value="">Heure souhaitée</option>
                                             {scheduleSlots.map((s) => (
                                                 <option key={s} value={s}>{s}</option>
                                             ))}
                                         </select>
                                     </div>
-                                    <select className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white">
+                                    <select
+                                        value={formData.appointmentType}
+                                        onChange={(event) => setFormData({ ...formData, appointmentType: event.target.value })}
+                                        className="w-full px-3 py-2 border border-dental-blue/20 rounded-md focus:border-dental-blue focus:outline-none text-sm bg-white"
+                                    >
                                         <option value="">Type de consultation *</option>
                                         <option value="consultation">Consultation générale</option>
                                         <option value="urgence">Urgence</option>
@@ -98,10 +193,12 @@ const ContactPage = () => {
                                     <Textarea
                                         placeholder="Description de votre demande ou symptômes (facultatif)"
                                         className="border-dental-blue/20 min-h-[120px]"
+                                        value={formData.message}
+                                        onChange={(event) => setFormData({ ...formData, message: event.target.value })}
                                     />
-                                    <Button variant="dental" className="w-full py-6 text-base gap-2">
+                                    <Button variant="dental" className="w-full py-6 text-base gap-2" type="submit" disabled={isSending}>
                                         <Send className="w-5 h-5" />
-                                        Envoyer la demande
+                                        {isSending ? "Envoi en cours..." : "Envoyer la demande"}
                                     </Button>
                                     <p className="text-xs text-muted-foreground text-center">
                                         * Champs obligatoires. Nous confirmerons votre rendez-vous par SMS ou email.
