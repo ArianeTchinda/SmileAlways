@@ -6,6 +6,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   Smile, Shield, Zap, Heart, Scissors, Crown, ArrowRight, ChevronLeft, ChevronRight,
 } from "lucide-react";
+import { WHATSAPP_LINK } from "@/lib/utils";
 
 const services = [
   {
@@ -21,7 +22,7 @@ const services = [
     title: "Prothèses Dentaires",
     slug: "protheses",
     description: "Couronnes, bridges et implants de haute qualité pour restaurer votre sourire.",
-    features: ["Implants dentaires", "Couronnes céramique", "Bridges fixes"],
+    features: ["Implants dentaires", "Couronnes céramique, céramo-metallique, zircone ", "Bridges fixes"],
     color: "from-violet-600 to-purple-500",
   },
   {
@@ -208,11 +209,11 @@ const ServicesSection = () => {
 
         {/* Bottom CTA */}
         <div className="text-center animate-on-scroll">
-          <Link to="/contact">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
             <Button variant="dental" size="lg" className="px-10 py-4 font-semibold shadow-lg">
               Prendre Rendez-vous
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

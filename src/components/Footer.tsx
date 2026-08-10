@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { WHATSAPP_LINK } from "@/lib/utils";
 import {
   MapPin,
   Phone,
@@ -137,11 +138,11 @@ const Footer = () => {
               </div>
             </div>
 
-            <Link to="/contact">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
               <Button variant="accent" className="mt-6 w-full">
                 Prendre Rendez-vous
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

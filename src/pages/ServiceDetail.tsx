@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useParams, Navigate } from "react-router-dom";
 import {
-    Smile, Crown, Scissors, Zap, Shield, Heart,
+    Smile, Crown, Scissors, Zap, Shield, Heart, ScanLine, Pill,
     CheckCircle, Calendar, ArrowRight, Clock, Award, Phone,
 } from "lucide-react";
+import { formatCfaPrice, WHATSAPP_LINK } from "@/lib/utils";
 import { useRef } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -32,9 +33,61 @@ const allServices = {
             "Maintien d'une haleine fraîche",
             "Sourire lumineux et dents saines",
         ],
-        price: "À partir de 15 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "45 – 60 min",
         frequency: "Tous les 6 mois recommandé",
+    },
+    "radio-dentaire": {
+        icon: ScanLine,
+        title: "Radiographie rétro-alvéolaire",
+        heroSubtitle: "Un examen radiographique précis pour mieux diagnostiquer et traiter.",
+        description:
+            "Cette radiographie permet d'examiner l'état des dents, des racines et des structures osseuses pour confirmer un diagnostic et guider les soins.",
+        longDescription:
+            "La radiographie rétro-alvéolaire constitue un examen rapide et essentiel pour repérer des pathologies cachées, comme les caries interproximales, les infections ou les anomalies de structure. Elle est particulièrement utile pour préparer des traitements de chirurgie, de prothèse ou d'orthodontie.",
+        features: [
+            "Radiographie rétro-alvéolaire standard",
+            "Analyse des dents et des racines",
+            "Détection des infections cachées",
+            "Planification de traitements précis",
+            "Résultats rapides et interprétation claire",
+            "Examen sans douleur",
+        ],
+        benefits: [
+            "Diagnostic rapide et fiable",
+            "Prévention de complications cachées",
+            "Meilleure planification des soins",
+            "Examen peu invasif",
+        ],
+        price: formatCfaPrice(10000),
+        duration: "10 – 15 min",
+        frequency: "Selon recommandation clinique",
+    },
+    "mini-pharmacie": {
+        icon: Pill,
+        title: "Mini Pharmacie",
+        heroSubtitle: "Accédez rapidement à des produits de soins et de confort.",
+        description:
+            "Notre mini pharmacie vous propose des produits d'hygiène bucco-dentaire et des médicaments de base, directement en cabinet pour faciliter votre suivi.",
+        longDescription:
+            "Le service de mini pharmacie est pensé pour répondre rapidement à vos besoins de confort et de suivi après une consultation. Nous vous mettons à disposition des produits essentiels et des conseils adaptés pour poursuivre votre traitement au mieux.",
+        features: [
+            "Produits d'hygiène bucco-dentaire",
+            "Médicaments de base et antalgiques",
+            "Conseils de prise en charge",
+            "Accessibilité rapide en cabinet",
+            "Produits adaptés à votre suivi",
+            "Accompagnement pratique après consultation",
+        ],
+        benefits: [
+            "Gain de temps en cabinet",
+            "Produits utiles immédiatement disponibles",
+            "Conseils personnalisés",
+            "Suivi plus simple au quotidien",
+        ],
+        price: formatCfaPrice(5000),
+        duration: "Consultation rapide",
+        frequency: "Disponible sur rendez-vous ou sur place",
     },
     protheses: {
         icon: Crown,
@@ -48,7 +101,7 @@ const allServices = {
             "Implants dentaires en titane",
             "Couronnes céramo-métalliques ou tout céramique",
             "Bridges fixes",
-            "Prothèses amovibles",
+            "Prothèses amovibles partielles et complètes",
             "Prothèses sur implants",
             "Couronne provisoire immédiate",
         ],
@@ -58,7 +111,7 @@ const allServices = {
             "Matériaux biocompatibles et durables",
             "Amélioration de la confiance en soi",
         ],
-        price: "À partir de 150 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "Plusieurs séances",
         frequency: "Suivi annuel recommandé",
     },
@@ -84,7 +137,7 @@ const allServices = {
             "Suivi post-opératoire personnalisé",
             "Récupération rapide",
         ],
-        price: "À partir de 25 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "30 – 90 min",
         frequency: "Selon nécessité clinique",
     },
@@ -110,8 +163,8 @@ const allServices = {
             "Personnalisation du traitement",
             "Rendu naturel garanti",
         ],
-        price: "À partir de 50 000 FCFA",
-        duration: "1 – 2 séances",
+        price: formatCfaPrice(100000),
+        duration: "1 séance",
         frequency: "Blanchiment : tous les 12-18 mois",
     },
     orthodontie: {
@@ -136,8 +189,8 @@ const allServices = {
             "Adapté à tous les âges",
             "Résultats durables avec contention",
         ],
-        price: "À partir de 300 000 FCFA",
-        duration: "12 – 24 mois",
+        price: formatCfaPrice(400000),
+        duration: "un à deux ans",
         frequency: "Visite de contrôle mensuelle",
     },
     "urgences-dentaires": {
@@ -162,7 +215,7 @@ const allServices = {
             "Équipe de garde expérimentée",
             "Suivi post-urgence inclus",
         ],
-        price: "À partir de 20 000 FCFA",
+        price: formatCfaPrice(50000),
         duration: "Prise en charge immédiate",
         frequency: "Suivi selon le cas",
     },
@@ -171,7 +224,7 @@ const allServices = {
 type ServiceSlug = keyof typeof allServices;
 
 const otherServicesOrder: ServiceSlug[] = [
-    "preventifs", "protheses", "chirurgie", "esthetique", "orthodontie", "urgences-dentaires",
+    "preventifs", "radio-dentaire", "mini-pharmacie", "protheses", "chirurgie", "esthetique", "orthodontie", "urgences-dentaires",
 ];
 
 const ServiceDetailPage = () => {
@@ -299,12 +352,12 @@ const ServiceDetailPage = () => {
                                             </div>
                                         </div>
                                         <div className="space-y-3">
-                                            <Link to="/contact">
+                                            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                                                 <Button variant="dental" className="w-full gap-2">
                                                     <Calendar className="w-4 h-4" />
                                                     Prendre rendez-vous
                                                 </Button>
-                                            </Link>
+                                            </a>
                                             <a href="tel:+237676615413">
                                                 <Button variant="dental-outline" className="w-full gap-2 mt-2">
                                                     <Phone className="w-4 h-4" />
@@ -357,12 +410,12 @@ const ServiceDetailPage = () => {
                             personnalisé sans engagement.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link to="/contact">
+                            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                                 <Button variant="accent" size="lg" className="gap-2 shadow-xl">
                                     <Calendar className="w-5 h-5" />
                                     Prendre rendez-vous
                                 </Button>
-                            </Link>
+                            </a>
                             <Link to="/services">
                                 <Button variant="dental-outline" size="lg" className="border-white text-white hover:bg-white/20 gap-2">
                                     Voir tous les services

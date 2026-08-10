@@ -21,8 +21,8 @@ const articlesContent: Record<string, {
         title: "Les 5 règles d'or pour un brossage parfait",
         date: "12 Avril 2026",
         readTime: "4 min",
-        author: "Sophie Mbarga",
-        authorRole: "Hygiéniste Dentaire",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "Un brossage efficace est la pierre angulaire d'une bonne santé bucco-dentaire. Pourtant, 70 % des adultes ne se brossent pas correctement. Voici les 5 règles que nous enseignons à nos patients.",
             "**1. La technique : la méthode de Bass**\nInclinez votre brosse à 45 degrés par rapport aux gencives. Effectuez de petits mouvements circulaires sans frotter horizontalement. Cette technique nettoie efficacement la jonction dent-gencive où les bactéries aiment se loger.",
@@ -40,8 +40,8 @@ const articlesContent: Record<string, {
         title: "Implants dentaires : tout ce que vous devez savoir",
         date: "8 Avril 2026",
         readTime: "6 min",
-        author: "Dr. Jessica Liliane",
-        authorRole: "Chirurgien-Dentiste, spécialiste en implantologie",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "L'implant dentaire est considéré comme la solution gold standard pour remplacer une dent manquante. Mais qu'est-ce qu'un implant exactement, et est-ce fait pour vous ?",
             "**Qu'est-ce qu'un implant dentaire ?**\nUn implant est une vis en titane biocompatible placée chirurgicalement dans l'os de la mâchoire. Elle sert de racine artificielle sur laquelle viendra se fixer une couronne (la partie visible de la dent). Le titane s'intègre progressivement à l'os dans un processus appelé ostéointégration.",
@@ -59,8 +59,8 @@ const articlesContent: Record<string, {
         title: "Comment préparer votre enfant à sa première visite chez le dentiste",
         date: "2 Avril 2026",
         readTime: "5 min",
-        author: "Dr. Luis Ndongo",
-        authorRole: "Chirurgien-Dentiste, spécialiste en orthodontie",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "La première visite chez le dentiste peut être source d'anxiété pour l'enfant comme pour le parent. Quelques stratégies simples suffisent à en faire une expérience positive.",
             "**Quand commencer ?**\nLa première visite devrait idéalement avoir lieu dès l'apparition des premières dents de lait, vers 12-18 mois. Il ne s'agit pas encore de soins mais d'une visite de découverte et de prévention.",
@@ -78,8 +78,8 @@ const articlesContent: Record<string, {
         title: "Blanchiment dentaire : professionnel vs kit maison, que choisir ?",
         date: "25 Mars 2026",
         readTime: "5 min",
-        author: "Dr. Jessica Liliane",
-        authorRole: "Chirurgien-Dentiste",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "Le marché des kits de blanchiment à domicile explose. Bandelettes, stylos, gouttières… Ces produits sont-ils vraiment efficaces et sans danger ? Comparons avec les traitements professionnels.",
             "**Kits de blanchiment en pharmacie**\nLes concentrations en peroxyde d'hydrogène sont légalement limitées à 0,1 % en vente libre. Résultat : un effet visible mais modeste (1-2 nuances). Leur efficacité dépend aussi de la qualité de la gouttière qui doit s'adapter parfaitement à votre dentition.",
@@ -96,8 +96,8 @@ const articlesContent: Record<string, {
         title: "Les aliments qui abîment vos dents (et ceux qui les protègent)",
         date: "18 Mars 2026",
         readTime: "4 min",
-        author: "Sophie Mbarga",
-        authorRole: "Hygiéniste Dentaire",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "Votre alimentation est l'un des facteurs les plus importants pour votre santé dentaire. Certains aliments protègent votre émail, d'autres l'attaquent. Faisons le point.",
             "**Les ennemis de vos dents**\nLes sucres sont la principale cause de caries : les bactéries les transforment en acides qui attaquent l'émail. Les sodas, jus de fruits, bonbons, biscuits sont particulièrement nocifs. Les aliments acides (citrons, vinaigre, sodas) érodent directement l'émail même sans sucre.",
@@ -114,8 +114,8 @@ const articlesContent: Record<string, {
         title: "Orthodontie adulte : n'est-il pas trop tard pour redresser vos dents ?",
         date: "10 Mars 2026",
         readTime: "6 min",
-        author: "Dr. Luis Ndongo",
-        authorRole: "Chirurgien-Dentiste, spécialiste en orthodontie",
+        author: "Dr Flora D",
+        authorRole: "Médecin bucco-dentaire",
         content: [
             "L'orthodontie, longtemps associée aux enfants et adolescents, concerne aujourd'hui plus de 30 % d'adultes. Et pour de bonnes raisons : il n'est jamais trop tard pour obtenir un beau sourire aligné.",
             "**Y a-t-il un âge limite ?**\nNon ! Tant que les dents et l'os alvéolaire sont en bonne santé, un traitement orthodontique est possible, que vous ayez 25 ou 55 ans. La seule différence avec les enfants est que chez l'adulte, l'os est plus dense, donc les déplacements sont légèrement plus lents.",
@@ -164,13 +164,14 @@ const BlogPostPage = () => {
                 <div className="container mx-auto px-4 max-w-4xl">
                     <Link
                         to="/blog"
-                        className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+                        className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 mr-6 transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Retour au blog
                     </Link>
-                    <Badge className={`${article.categoryColor} mb-4 border-0`}>{article.category}</Badge>
+                   
                     <h1 className="text-4xl md:text-5xl font-bold mb-6">{article.title}</h1>
+                    
                     <div className="flex flex-wrap items-center gap-4 text-white/80 text-sm">
                         <span className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" /> {article.date}
@@ -179,7 +180,9 @@ const BlogPostPage = () => {
                             <Clock className="w-4 h-4" /> {article.readTime} de lecture
                         </span>
                         <span>Par <strong>{article.author}</strong>, {article.authorRole}</span>
+
                     </div>
+                     <Badge className={`${article.categoryColor} mt-4 border-0`}>{article.category}</Badge>
                 </div>
             </section>
 

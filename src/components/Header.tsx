@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import logoImg from "@/assets/logo.png";
+import { WHATSAPP_LINK } from "@/lib/utils";
 
 const servicesDropdown = [
   {
@@ -319,7 +320,7 @@ const Header = () => {
                 </Button>
               </a>
 
-              <Link to="/contact">
+              <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                 <Button
                   variant="dental"
                   size="sm"
@@ -328,7 +329,7 @@ const Header = () => {
                   <Calendar className="w-4 h-4" />
                   Rendez-vous
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -436,7 +437,7 @@ const Header = () => {
                   </Button>
                 </a>
 
-                <Link to="/contact">
+                <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                   <Button
                     variant="dental"
                     size="sm"
@@ -445,7 +446,7 @@ const Header = () => {
                     <Calendar className="w-4 h-4" />
                     Prendre rendez-vous
                   </Button>
-                </Link>
+                </a>
               </div>
             </nav>
           </div>

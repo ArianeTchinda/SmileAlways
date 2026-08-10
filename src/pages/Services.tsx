@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
-    Smile, Shield, Heart, Scissors, Crown, Zap,
+    Smile, Shield, Heart, Scissors, Crown, Zap, ScanLine, Pill,
     ArrowRight, CheckCircle, Calendar, Clock, Award,
 } from "lucide-react";
+import { formatCfaPrice, WHATSAPP_LINK } from "@/lib/utils";
 
 // Importation des images (assurez-vous que les fichiers existent dans votre dossier assets)
 import imgPreventif from "@/assets/image1.jpeg";
@@ -35,9 +36,47 @@ const servicesData = [
             "Conseils d'hygiène personnalisés",
             "Bilan de santé parodontal",
         ],
-        price: "À partir de 15 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "45 – 60 min",
         color: "from-dental-blue/90 to-dental-blue-light/90",
+    },
+    {
+        id: "radio-dentaire",
+        slug: "radio-dentaire",
+        icon: ScanLine,
+        image: imgPreventif,
+        title: "Radiographie rétro-alvéolaire",
+        description: "Un examen radiographique précis pour diagnostiquer les pathologies cachées et planifier les traitements les plus adaptés.",
+        features: [
+            "Radiographie rétro-alvéolaire standard",
+            "Analyse des dents et des racines",
+            "Détection des infections cachées",
+            "Planification de traitements précis",
+            "Résultats rapides et interprétation claire",
+            "Examen sans douleur",
+        ],
+        price: formatCfaPrice(10000),
+        duration: "10 – 15 min",
+        color: "from-cyan-700/90 to-sky-500/90",
+    },
+    {
+        id: "mini-pharmacie",
+        slug: "mini-pharmacie",
+        icon: Pill,
+        image: imgUrgence,
+        title: "Mini Pharmacie",
+        description: "Des produits de soins bucco-dentaires et des médicaments de base, immédiatement disponibles pour votre confort et votre suivi.",
+        features: [
+            "Produits d'hygiène bucco-dentaire",
+            "Médicaments de base et antalgiques",
+            "Conseils de prise en charge",
+            "Accessibilité rapide en cabinet",
+            "Produits adaptés à votre suivi",
+            "Accompagnement pratique après consultation",
+        ],
+        price: formatCfaPrice(2000),
+        duration: "Consultation rapide",
+        color: "from-amber-600/90 to-orange-500/90",
     },
     {
         id: "protheses",
@@ -54,7 +93,7 @@ const servicesData = [
             "Prothèses sur implants",
             "Couronne provisoire immédiate",
         ],
-        price: "À partir de 150 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "Plusieurs séances",
         color: "from-violet-600/90 to-purple-500/90",
     },
@@ -73,7 +112,7 @@ const servicesData = [
             "Chirurgie parodontale",
             "Résection apicale",
         ],
-        price: "À partir de 25 000 FCFA",
+        price: formatCfaPrice(15000),
         duration: "30 – 90 min",
         color: "from-slate-700/90 to-slate-800/90",
     },
@@ -92,7 +131,7 @@ const servicesData = [
             "Reconstruction coronaire",
             "Smile Design numérique",
         ],
-        price: "À partir de 50 000 FCFA",
+        price: formatCfaPrice(100000),
         duration: "1 – 2 séances",
         color: "from-dental-orange/90 to-dental-orange-light/90",
     },
@@ -111,8 +150,8 @@ const servicesData = [
             "Contension post-traitement",
             "Orthopédie dento-faciale (enfants)",
         ],
-        price: "À partir de 300 000 FCFA",
-        duration: "12 – 24 mois",
+        price: formatCfaPrice(400000),
+        duration: "un à deux ans",
         color: "from-emerald-600/90 to-teal-500/90",
     },
     {
@@ -130,7 +169,7 @@ const servicesData = [
             "Replantation dentaire",
             "Prise en charge des traumatismes",
         ],
-        price: "À partir de 20 000 FCFA",
+        price: formatCfaPrice(50000),
         duration: "Prise en charge immédiate",
         color: "from-red-700/90 to-red-600/90",
     },
@@ -214,12 +253,12 @@ const ServicesPage = () => {
                                                             <ArrowRight className="w-4 h-4" />
                                                         </Button>
                                                     </Link>
-                                                    <Link to="/contact" className="flex-1 sm:flex-none">
+                                                    <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="flex-1 sm:flex-none">
                                                         <Button variant="outline" className="w-full gap-2 border-slate-200 hover:bg-slate-50">
                                                             <Calendar className="w-4 h-4 text-dental-blue" />
                                                             Rendez-vous
                                                         </Button>
-                                                    </Link>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,7 +269,7 @@ const ServicesPage = () => {
                     </div>
                 </section>
 
-                <BeforeAfterSection />
+               {/* <BeforeAfterSection /> */} 
 
                 {/* CTA Final */}
                 <section className="py-20 bg-slate-900 text-white overflow-hidden relative">
@@ -243,12 +282,12 @@ const ServicesPage = () => {
                             Notre équipe vous accueille dans un cadre moderne pour des soins personnalisés et sans douleur.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                            <Link to="/contact">
+                            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
                                 <Button variant="accent" size="lg" className="h-14 px-8 text-lg gap-3 shadow-2xl">
                                     <Calendar className="w-6 h-6" />
                                     Réserver ma consultation
                                 </Button>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>

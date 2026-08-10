@@ -5,54 +5,37 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { GraduationCap, Award, Mail, Calendar } from "lucide-react";
-
-import medecin1 from "../assets/medecin2.jpg";
-import medecin2 from "../assets/medecin3.jpg";
-import medecin3 from "../assets/medecin4.jpg";
+import DoctorImage from "@/components/DoctorImage";
 
 const teamMembers = [
     {
-        name: "Dr. Luis Ndongo",
-        role: "Chirurgien-Dentiste",
+        name: "Dr. Flora D",
+        role: "Médecin bucco-dentaire",
         speciality: "Orthodontie & Esthétique",
-        experience: "12 ans d'expérience",
-        education: "Université Paris VII — Faculté de Chirurgie Dentaire",
+        experience: "08 ans d'expérience",
+        education: "FMSP",
         description:
-            "Le Dr. Luis Ndongo est passionné par l'orthodontie et l'esthétique dentaire. Formé à Paris, il revient au Cameroun avec la conviction que chaque patient mérite des soins de classe internationale. Il accompagne ses patients à travers des traitements orthodontiques personnalisés et des sourires transformés par des facettes et du blanchiment professionnel.",
-        image: medecin1,
-        certifications: ["Orthodontie", "Implantologie", "Esthétique"],
+            "Le Dr. Flora D est passionnée par l'orthodontie et l'esthétique dentaire. Elle accompagne ses patients à travers des traitements orthodontiques personnalisés et des sourires transformés par des facettes et du blanchiment professionnel.",
+        image: null,
+        certifications: ["Orthodontie", "Esthétique"],
         languages: ["Français", "Anglais"],
-        email: "l.ndongo@smilealways.cm",
-        phone: "6 77 22 33 11",
+        email: "floradjizanne@gamil.com",
     },
     {
-        name: "Dr. Jessica Liliane",
-        role: "Chirurgien-Dentiste",
-        speciality: "Chirurgie & Implantologie",
-        experience: "15 ans d'expérience",
-        education: "Université de Lyon — Master en Implantologie",
+        name: "Dr. Alphonse",
+        role: "Medecin bucco-dentaire",
+        speciality: "Medecine bucco-dentaire",
+        experience: "03 ans d'expérience",
+        education: "FMSP",
         description:
-            "Experte en implantologie et chirurgie orale, le Dr. Jessica Liliane utilise les techniques les plus avancées pour des résultats durables et esthétiques. Elle est reconnue pour son habileté chirurgicale et sa capacité à mettre les patients anxieux à l'aise. Elle maîtrise les greffes osseuses et les implants sur arcade complète (All-on-4).",
-        image: medecin2,
-        certifications: ["Chirurgie", "Implantologie", "Parodontologie"],
-        languages: ["Français", "Anglais", "Bassa"],
-        email: "j.liliane@smilealways.cm",
-        phone: "6 77 22 33 11",
+            "Le Dr. Alphonse utilise les techniques les plus avancées pour des résultats durables et esthétiques.",
+        image: null,
+        certifications: ["Chirurgie"],
+        languages: ["Français"],
+        email: "alphonsebirwe68@gmail.com",
+        
     },
-    {
-        name: "Sophie Mbarga",
-        role: "Hygiéniste Dentaire",
-        speciality: "Prévention & Soins",
-        experience: "8 ans d'expérience",
-        education: "École Supérieure d'Hygiène Dentaire de Douala",
-        description:
-            "Sophie est la spécialiste de la prévention au sein de l'équipe Smile Always. Elle réalise les détartrages, polissages et bilans parodontaux avec soin et bienveillance. Elle est particulièrement appréciée pour ses explications claires et ses conseils pratiques qui transforment vraiment la santé bucco-dentaire de ses patients.",
-        image: medecin3,
-        certifications: ["Hygiène", "Prévention", "Éducation"],
-        languages: ["Français", "Ewondo"],
-        email: "s.mbarga@smilealways.cm",
-        phone: "6 77 22 33 11",
-    },
+  
 ];
 
 const EquipePage = () => {
@@ -76,7 +59,7 @@ const EquipePage = () => {
                                     >
                                         {/* Photo */}
                                         <div className="lg:w-2/5 relative overflow-hidden">
-                                            <img
+                                            <DoctorImage
                                                 src={member.image}
                                                 alt={member.name}
                                                 className="w-full h-80 lg:h-full object-cover"
@@ -163,8 +146,8 @@ const EquipePage = () => {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
-                            { value: "3", label: "Praticiens expérimentés" },
-                            { value: "35+", label: "Années d'expertise cumulées" },
+                            { value: "02", label: "Praticiens expérimentés" },
+                            { value: "05+", label: "Années d'expertise cumulées" },
                             { value: "100%", label: "Satisfaction patient" },
                             { value: "25+", label: "Formations continues" },
                         ].map((stat, i) => (

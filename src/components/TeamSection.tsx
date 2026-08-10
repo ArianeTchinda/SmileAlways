@@ -8,10 +8,7 @@ import {
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
-import medecin1 from "../assets/medecin2.jpg";
-import medecin2 from "../assets/medecin3.jpg";
-import medecin3 from "../assets/medecin4.jpg";
+import DoctorImage from "@/components/DoctorImage";
 
 /* ── Animated counter ─────────────────────────────── */
 const Counter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
@@ -50,38 +47,28 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      name: "Dr. Luis Ndongo",
-      role: "Chirurgien-Dentiste",
+      name: "Dr. Flora D",
+      role: "Medecin bucco-dentaire",
       speciality: "Orthodontie & Esthétique",
       experience: "12 ans d'expérience",
-      education: "Université Paris VII",
+      education: "FMSP",
       description:
-        "Spécialisée en orthodontie moderne et esthétique dentaire, Dr. Dubois accompagne ses patients vers leur sourire idéal.",
-      image: medecin1,
-      certifications: ["Orthodontie", "Implantologie", "Esthétique"],
+        "Spécialisée en orthodontie moderne et esthétique dentaire, Dr. Flora accompagne ses patients vers leur sourire idéal.",
+      image: null,
+      certifications: ["Orthodontie", "Esthétique"],
     },
     {
-      name: "Dr. Jessica Liliane",
-      role: "Chirurgien-Dentiste",
-      speciality: "Chirurgie & Implantologie",
-      experience: "15 ans d'expérience",
-      education: "Université de Lyon",
+      name: "Dr. Alphonse",
+      role: "Medecin bucco-dentaire",
+      speciality: "Medecine bucco-dentaire",
+      experience: "03 ans d'expérience",
+      education: "FMSP",
       description:
-        "Expert en chirurgie dentaire et implantologie, Dr. Martin utilise les techniques les plus avancées pour des résultats optimaux.",
-      image: medecin2,
-      certifications: ["Chirurgie", "Implantologie", "Parodontologie"],
+        "Dr. Alphonse utilise les techniques les plus avancées pour des résultats optimaux.",
+      image: null,
+      certifications: ["Chirurgie"],
     },
-    {
-      name: "Sophie ",
-      role: "Hygiéniste Dentaire",
-      speciality: "Prévention & Soins",
-      experience: "8 ans d'expérience",
-      education: "École d'Hygiène Dentaire",
-      description:
-        "Passionnée par la prévention, Sophie accompagne nos patients dans le maintien d'une hygiène bucco-dentaire parfaite.",
-      image: medecin3,
-      certifications: ["Hygiène", "Prévention", "Éducation"],
-    },
+  
   ];
 
   return (
@@ -111,11 +98,13 @@ const TeamSection = () => {
               <div className="relative">
                 {/* Image */}
                 <div className="relative h-80 overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
+                  <div className="w-full h-full group-hover:scale-110 transition-transform duration-700">
+                    <DoctorImage
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-dental-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 

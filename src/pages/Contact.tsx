@@ -216,7 +216,7 @@ const ContactPage = () => {
                                     title: "Adresse",
                                     lines: ["Carrefour Vogt", "Yaoundé Centre, Cameroun"],
                                     action: "Voir sur Google Maps",
-                                    href: "https://maps.google.com",
+                                    href: "https://www.google.com/maps/place/Cabinet+Dentaire+SmileAlways/@3.8445281,11.4993249,15.65z/data=!4m6!3m5!1s0x108bcf0331ccaf5f:0xc71b124334f48a5a!8m2!3d3.8440946!4d11.501514!16s%2Fg%2F11z3y5tgp_?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D",
                                 },
                                 {
                                     icon: Phone,
@@ -290,7 +290,8 @@ const ContactPage = () => {
                                         <MapPin className="w-10 h-10 text-dental-blue mx-auto mb-3" />
                                         <p className="font-semibold text-dental-blue">Carrefour Vogt, Yaoundé</p>
                                         <a
-                                            href="https://maps.google.com"
+
+                                            href="https://www.google.com/maps/place/Cabinet+Dentaire+SmileAlways/@3.8445281,11.4993249,15.65z/data=!4m6!3m5!1s0x108bcf0331ccaf5f:0xc71b124334f48a5a!8m2!3d3.8440946!4d11.501514!16s%2Fg%2F11z3y5tgp_?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="text-sm text-dental-orange mt-2 inline-block"

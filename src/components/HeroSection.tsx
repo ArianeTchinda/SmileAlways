@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Phone, Award, Users, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-dental.jpg";
 import { useEffect, useState } from "react";
+import { WHATSAPP_LINK } from "@/lib/utils";
 
 const words = ["Votre sourire", "Votre confiance", "Votre santé"];
 
@@ -72,12 +72,12 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <Link to="/contact">
+            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
               <Button variant="accent" size="lg" className="text-lg px-8 py-6 shadow-2xl">
                 <Calendar className="w-5 h-5 mr-2" />
                 Prendre Rendez-vous
               </Button>
-            </Link>
+            </a>
             <a href="tel:+237676615413">
               <Button variant="dental-outline" size="lg" className="text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-dental-blue">
                 <Phone className="w-5 h-5 mr-2" />

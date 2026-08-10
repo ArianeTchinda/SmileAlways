@@ -2,21 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-// Import des images
-import image1 from "@/assets/image1.jpeg";
-import image2 from "@/assets/image2.jpeg";
-import image3 from "@/assets/image3.webp";
-import image4 from "@/assets/image4.jpeg";
-import image5 from "@/assets/image5.jpeg";
-import image6 from "@/assets/image6.jpeg";
+// Import des images réelles du cabinet
+import accueilImage from "@/assets/img/Acceuil.jpeg";
+import equipements from "@/assets/img/equipements.jpeg";
+import equipements1 from "@/assets/img/equipements1.jpeg";
+import salleDeSoins from "@/assets/img/sallede soins.jpeg";
 
 const galleryImages = [
-  { url: image1, alt: "Cabinet dentaire moderne", title: "Salle de consultation", category: "Équipement" },
-  { url: image2, alt: "Équipements dentaires", title: "Technologie de pointe", category: "Innovation" },
-  { url: image3, alt: "Cabinet accueillant", title: "Espace patient", category: "Confort" },
-  { url: image4, alt: "Soins dentaires", title: "Soins professionnels", category: "Expertise" },
-  { url: image5, alt: "Traitement dentaire", title: "Excellence clinique", category: "Précision" },
-  { url: image6, alt: "Sourires heureux", title: "Patients satisfaits", category: "Résultat" },
+  { url: accueilImage, alt: "Entrée du cabinet Smile Always", title: "Accueil du cabinet", category: "Accueil" },
+  { url: equipements, alt: "Équipements dentaires modernes", title: "Équipements professionnels", category: "Clinique" },
+  { url: equipements1, alt: "Poste de soins dentaires moderne", title: "Espace soins", category: "Confort" },
+  { url: salleDeSoins, alt: "Salle de soins propre et sécurisée", title: "Salle de traitement", category: "Hygiène" },
 ];
 
 const GallerySection = () => {
@@ -45,10 +41,10 @@ const GallerySection = () => {
         
         <div className="flex flex-col items-center text-center mb-16">
           <span className="px-4 py-1.5 rounded-full bg-dental-blue/10 text-dental-blue text-sm font-bold tracking-wide uppercase mb-4">
-            Immersion
+            Immersion réelle
           </span>
           <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            Notre Univers <span className="text-dental-blue">Clinique</span>
+            Notre Clinique <span className="text-dental-blue">en images réelles</span>
           </h2>
         </div>
 

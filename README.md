@@ -1,18 +1,11 @@
-# Welcome to your Lovable project
+# Smile Always
 
-## Project info
+Site vitrine du cabinet dentaire Smile Always.
 
-**URL**: https://lovable.dev/projects/251a457d-7ab3-4c01-bbd8-e21ac5602f2d
+## Développement
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/251a457d-7ab3-4c01-bbd8-e21ac5602f2d) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
+- Installer les dépendances : npm install
+- Lancer le site localement : npm run dev
 
 **Use your preferred IDE**
 
